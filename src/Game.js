@@ -34,6 +34,7 @@ class Game extends React.Component {
       PosX:  0,
       PosY: 0,
       grid: null,
+      capturadas:0,
       complete: false,  // true if game is complete, false otherwise
       waiting: false
     };
@@ -80,18 +81,34 @@ class Game extends React.Component {
       waiting: true
     });
     this.pengine.query(queryS, (success, response) => {
-      if (success) {
+        if (success) {
         this.setState({
           grid: response['Grid'],
-          turns: this.state.turns + 1,
-          waiting: false
+            turns: this.state.turns + 1,
+            waiting: false,
         });
+          //const principal = this.state.grid[this.state.PosX][this.state.PosY];
+            const grid2 = JSON.stringify(this.state.grid).replaceAll('"', "");
+            const query2 = "adyacentes(" + grid2 + "," + color + "," + this.state.PosX + "," + this.state.PosY + ", [], Rta)";
+            this.pengine.query(query2, (success, response) => {
+                if (success) {
+                    const Aux = response['Rta'];
+                    this.setState({
+                        capturadas: Aux.length,
+                    });
+                }
+                this.setState({
+                    waiting: false,
+                });
+            });
       } else {
         // Prolog query will fail when the clicked color coincides with that in the top left cell.
         this.setState({
           waiting: false
         });
       }
+        //despues actualizar con el ultimo movimiento realizado.
+        //
     });
   }
 
@@ -113,7 +130,11 @@ class Game extends React.Component {
           </div>
           <div className="turnsPanel">
             <div className="turnsLab">Turns</div>
-            <div className="turnsNum">{this.state.turns}</div>
+                    <div className="turnsNum">{this.state.turns}</div>
+                    <div className="capturad"> Capturadas: <br /> {this.state.capturadas}</div>
+          </div>
+          <div className="history">
+           
           </div>
         </div>
         <Board grid={this.state.grid} />
