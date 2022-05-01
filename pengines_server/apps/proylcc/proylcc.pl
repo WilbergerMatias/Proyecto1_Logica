@@ -17,25 +17,30 @@ flick(Grid, Color, PosX, PosY, FGrid):-
     encontrarLista(Grid,PosY,Lista),
     encontrarElemento(Lista, PosX, Elem),
     dif(Color,Elem),
-    adyacentes(Grid, Elem, PosX, PosY, [], ListadeAdyacentes),
-    cambiarElemento(PosX, Lista, Color, NuevaLista),
-    cambiarElemento(PosY,Grid, NuevaLista, NewGrid),
-    FGrid = ListadeAdyacentes.
-    % idealmente se cambiarian todos los elementos de 1 lista por vez (usando
-    % cambiar color), y luego se intercambian listas (la actual por la modificada.
-    % cambiar en Grid el elemento encontrado, luego buscar los adyacentes
-    % del elemento en posX posY, y alterarlos a medida que se van encontrando
-    % FGrid = Grid. (no estoy seguro de que es correcto, consultar)
+    ((adyacentes(Grid, Elem, PosX, PosY, [], ListadeAdyacentes),
+    cambiarColorAdyacentes(Grid, ListadeAdyacentes, Color, FGrid));
+    (cambiarElemento(PosX, Lista, Color, NuevaLista),
+    cambiarElemento(PosY, Grid, NuevaLista, FGrid))).
+    
+
+cambiarColorAdyacentes(Grid, [], _Color, Grid).
+
+cambiarColorAdyacentes(Grid, [[PosX , PosY] | Ys], Color, PLista) :-
+    encontrarLista(Grid,PosY,Lista),
+    cambiarElemento(PosX, Lista, Color, ListaS),
+    cambiarElemento(PosY, Grid, ListaS, NuevaLista),
+    cambiarColorAdyacentes(NuevaLista, Ys, Color, PLista).
 
 %!
 % Predicado para encontrar una lista por su posicion (_, Y) en una
 % matriz/grid, con iniciales (0, 0) hasta (n-1, n-1).
 % (Pensado para ser usado con el predicado encontrar elemento).
 
-encontrarLista([Lista|_], 0, Lista).
+encontrarLis(Lista, 0, Lista).
 
-encontrarLista([_|RESTO],Y,Rta):-
-    (Y=\=0, Aux is Y-1,encontrarLista(RESTO,Aux,Rta)).
+encontrarLista([Lista|RESTO],Y,Rta):-
+    (not(Y is 0), Aux is Y-1,encontrarLista(RESTO,Aux,Rta));
+    (encontrarLis(Lista, 0, Rta), Y is 0).
 
 %!
 % Predicado para econtrar el X-esimo elemento de una lista.
@@ -120,15 +125,15 @@ adyacentes(Grid, Color, PosX, PosY, ListaRes, ListaAdyacentes):-
     encontrarElemento(ListaY,PosX,Elem),
     not(dif(Color,Elem)),
     append(ListaRes,[[PosX,PosY]],LRes),
-    (dif(PosX, 0), XAux1 is PosX-1, adyacentesC(Grid,Color, XAux1,PosY, LARGO, LRes,ResAux1)),
-    (dif(PosX, LARGO), XAux2 is PosX+1,
+    (XAux1 is PosX-1, adyacentesC(Grid,Color, XAux1,PosY, LARGO, LRes,ResAux1)),
+    (XAux2 is PosX+1,
       ((ResAux1 = [], adyacentesC(Grid,Color, XAux2,PosY,LARGO,LRes,ResAux2));
       (not(ResAux1 = []),adyacentesC(Grid,Color, XAux2,PosY,LARGO,ResAux1,ResAux2)))),
-    (dif(PosY, 0),YAux1 is PosY-1,
+    (YAux1 is PosY-1,
       (not(ResAux2 = []), adyacentesC(Grid,Color, PosX,YAux1,LARGO,ResAux2,ResAux3));
       (not(ResAux1 = []), adyacentesC(Grid,Color, PosX,YAux1,LARGO,ResAux1,ResAux3));
       (adyacentesC(Grid,Color, PosX,YAux1,LARGO,LRes,ResAux3))),
-    (dif(PosY, LARGO), YAux2 is PosY+1,
+    (YAux2 is PosY+1,
       (not(ResAux3 = []), adyacentesC(Grid,Color, PosX,YAux2,LARGO,ResAux3,ResAux4));
       (not(ResAux2 = []), adyacentesC(Grid,Color, PosX,YAux2,LARGO,ResAux2,ResAux4));
       (not(ResAux1 = []), adyacentesC(Grid,Color, PosX,YAux2,LARGO,ResAux1,ResAux4));
