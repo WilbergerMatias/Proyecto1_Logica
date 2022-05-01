@@ -31,6 +31,8 @@ class Game extends React.Component {
     super(props);
     this.state = {
       turns: 0,
+      PosX:  0,
+      PosY: 0,
       grid: null,
       complete: false,  // true if game is complete, false otherwise
       waiting: false
@@ -73,7 +75,7 @@ class Game extends React.Component {
     //        [r,b,b,v,p,y,p,r,b,g,p,y,b,r],
     //        [v,g,p,b,v,v,g,g,g,b,v,g,g,g]],r, Grid)
     const gridS = JSON.stringify(this.state.grid).replaceAll('"', "");
-    const queryS = "flick(" + gridS + "," + color + ", Grid)";
+      const queryS = "flick(" + gridS + "," + color + "," + this.state.PosX +","+ this.state.PosY+", Grid)";
     this.setState({
       waiting: true
     });
