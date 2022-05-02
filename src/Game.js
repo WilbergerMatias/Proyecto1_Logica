@@ -141,9 +141,10 @@ class Game extends React.Component {
                   <div className="historyTab">
                         {this.state.movimiento.map((color, mov) =>
                         <button
-                            className="colorBtn"
+                            className="historyBtn"
                             style={{ backgroundColor: colorToCss(color) }}
                             key={mov}
+                            disabled
                         />)}
                   </div>       
           </div>  
