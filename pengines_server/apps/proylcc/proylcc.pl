@@ -22,8 +22,15 @@ flick(Grid, Color, PosX, PosY, FGrid):-
     (cambiarElemento(PosX, Lista, Color, NuevaLista),
     cambiarElemento(PosY, Grid, NuevaLista, FGrid))).
     
+%!
+% Caso base utilizado en el predicado de cambio de color
 
 cambiarColorAdyacentes(Grid, [], _Color, Grid).
+
+%!
+% Caso recursivo del predicado de cambio de color,
+% Este predicado se encarga de cambiar el elemento en Grid,
+% en posicion X e Y por el elemento Color
 
 cambiarColorAdyacentes(Grid, [[PosX , PosY] | Ys], Color, PLista) :-
     encontrarLista(Grid,PosY,Lista),
@@ -45,19 +52,24 @@ encontrarLista([Lista|RESTO],Y,Rta):-
 %!
 % Predicado para econtrar el X-esimo elemento de una lista.
 % Utiliza el predicado nth0/3.
+
 encontrarElemento(Lista,X,Elem):-
 	nth0(X,Lista,Elem).
 
 %!
-%Cambia el elemento de una lista por otro. utiliza el nth0/4,
+% Cambia el elemento de una lista por otro. utiliza el nth0/4,
 % Utilizado para dada una lista, cambiar un color por otro y retornar la
 % lista resultado. Tambien utilizado para dada una lista de listas,
 % intercambiar una lista por otra y retornar la nueva lista de listas.
+
 cambiarElemento(PosX, Lista, Color, Res) :-
   nth0(PosX, Lista, _, Aux),
   nth0(PosX, Res, Color, Aux).
 
-
+%!
+% Predicado para comparar pares [X,Y], utilizado en la busqueda
+% de adyacentes (para conocer si una solucion ya fue encontrada).
+% Compara ambos pares, y retorna true en caso de que sean iguales.
 compare([[X|Xy]|T],[Z|Zy]):-
     equal([X|Xy],[Z|Zy]);compare(T,[Z|Zy]).
 
@@ -67,18 +79,14 @@ equal([X|Xy],[Z|Zy]):-
      X is Z,equal(Xy,Zy).
 
 
+
 %!
 % Este predicado tiene como objetivo encontrar todos los adyacentes de
 % una posicion dada, que cumplan con la condicion de que tengan el mismo
 % color que la primer posicion encontrada. Este predicado es recursivo,
 % y buscara todas las posiciones que cumplan con la condicion de
 % adyacencia (ver predicado "adyacentes")
-%!
-% Este predicado tiene como objetivo encontrar todos los adyacentes de
-% una posicion dada, que cumplan con la condicion de que tengan el mismo
-% color que la primer posicion encontrada. Este predicado es recursivo,
-% y buscara todas las posiciones que cumplan con la condicion de
-% adyacencia (ver predicado "adyacentes")
+
 adyacentesC(Grid, Color, PosX, PosY, LARGO, ListaRes, ListaAdyacentes):-
    ((PosX<0;PosY<0;PosX>LARGO;PosY>LARGO),(append(ListaRes,[],ListaAdyacentes)));
    (encontrarLista(Grid,PosY,ListaY),
@@ -103,6 +111,8 @@ adyacentesC(Grid, Color, PosX, PosY, LARGO, ListaRes, ListaAdyacentes):-
      ));
         append(ListaRes,[],ListaAdyacentes)
    )).
+
+
 %!
 %Predicado base para hallar los adyacentes de una posicion dada,
 % este agrega la posicion principal a la lista de adyacentes, y procede
@@ -110,13 +120,7 @@ adyacentesC(Grid, Color, PosX, PosY, LARGO, ListaRes, ListaAdyacentes):-
 % Una celda adyacente es aquella que es vecina (se encuentra a 1
 % posicion en X o Y), y contiene el mismo color que la Celda de la cual
 % se compara adyacencia.
-%!
-%Predicado base para hallar los adyacentes de una posicion dada,
-% este agrega la posicion principal a la lista de adyacentes, y procede
-% a verificar en sus 4 direcciones si tienen algun adyacente.
-% Una celda adyacente es aquella que es vecina (se encuentra a 1
-% posicion en X o Y), y contiene el mismo color que la Celda de la cual
-% se compara adyacencia.
+
 adyacentes(Grid, Color, PosX, PosY, ListaRes, ListaAdyacentes):-
     ListaRes = [],
     encontrarLista(Grid,PosY,ListaY),
