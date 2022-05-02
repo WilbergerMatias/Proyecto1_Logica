@@ -34,7 +34,8 @@ class Game extends React.Component {
       PosX:  0,
       PosY: 0,
       grid: null,
-      capturadas:0,
+        capturadas: 0,
+      movimiento: [],
       complete: false,  // true if game is complete, false otherwise
       waiting: false
     };
@@ -93,6 +94,7 @@ class Game extends React.Component {
             this.pengine.query(query2, (success, response) => {
                 if (success) {
                     const Aux = response['Rta'];
+                    this.state.movimiento.push(colorToCss(color))
                     this.setState({
                         capturadas: Aux.length,
                     });
@@ -134,8 +136,15 @@ class Game extends React.Component {
             <div className="capturadasLab">Capturadas</div>
                     <div className="capturadasNum"> {this.state.capturadas}</div>
           </div>
-                <div className="historyLab">Ultimos movimientos</div>
-                <div className = "historyTab"></div>
+                <div className="historyLab">movimientos</div>
+                <div className="historyTab">
+                    {this.state.movimiento.map(color =>
+                        <button
+                            className="colorBtn"
+                            style={{ backgroundColor: colorToCss(color) }}
+                            key={color.uniqueId}
+                        />)}
+                </div>
         </div>
         <Board grid={this.state.grid} />
       </div>
