@@ -38,6 +38,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   margin-top: 40px;
   font-size: 20px;
   color: darkblue;
@@ -45,6 +46,15 @@ body {
 
 .turnsLab {
   text-transform: uppercase;
+}
+
+.capturadasLab {
+  margin-top: 10px;
+  text-transform: uppercase;
+}
+
+.capturadasNum {
+  margin-top: 10px;
 }
 
 .turnsNum {
