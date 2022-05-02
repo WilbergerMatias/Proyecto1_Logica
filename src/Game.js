@@ -133,7 +133,7 @@ class Game extends React.Component {
               />)}
           </div>
           <div className="subPanel">
-            <div className="turnsLab">Turns</div>
+            <div className="turnsLab">Turnos</div>
                     <div className="turnsNum">{this.state.turns}</div>
             <div className="capturadasLab">Capturadas</div>
                     <div className="capturadasNum"> {this.state.capturadas}</div>
