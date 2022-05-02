@@ -34,7 +34,7 @@ body {
   border: 2px solid black;
 }
 
-.turnsPanel {
+.subPanel {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -65,6 +65,7 @@ body {
     margin-top: 10px;
     text-align: center;
     text-transform: uppercase;
+    margin-bottom: 5px;
 }
 
 .historyTab {

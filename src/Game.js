@@ -132,21 +132,21 @@ class Game extends React.Component {
                 key={color}
               />)}
           </div>
-          <div className="turnsPanel">
+          <div className="subPanel">
             <div className="turnsLab">Turns</div>
                     <div className="turnsNum">{this.state.turns}</div>
             <div className="capturadasLab">Capturadas</div>
                     <div className="capturadasNum"> {this.state.capturadas}</div>
-          </div>
-                <div className="historyLab">movimientos</div>
-                <div className="historyTab">
-                    {this.state.movimiento.map((color, mov) =>
+            <div className="historyLab">movimientos</div>
+                  <div className="historyTab">
+                        {this.state.movimiento.map((color, mov) =>
                         <button
                             className="colorBtn"
                             style={{ backgroundColor: colorToCss(color) }}
                             key={mov}
                         />)}
-                </div>
+                  </div>       
+          </div>  
         </div>
         <Board grid={this.state.grid} />
       </div>
