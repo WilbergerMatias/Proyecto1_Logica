@@ -86,7 +86,6 @@ class Game extends React.Component {
         this.setState({
           grid: response['Grid'],
             turns: this.state.turns + 1,
-            waiting: false,
         });
           //const principal = this.state.grid[this.state.PosX][this.state.PosY];
             const grid2 = JSON.stringify(this.state.grid).replaceAll('"', "");
@@ -97,10 +96,15 @@ class Game extends React.Component {
                     this.setState({
                         capturadas: Aux.length,
                     });
+                    if (Aux.length === this.state.grid.length * this.state.grid[0].length)
+                        this.setState({
+                            complete: true
+                        })
                 }
-                this.setState({
-                    waiting: false,
-                });
+                if (this.state.complete!==1)
+                    this.setState({
+                        waiting: false,
+                    });
             });
       } else {
         // Prolog query will fail when the clicked color coincides with that in the top left cell.
