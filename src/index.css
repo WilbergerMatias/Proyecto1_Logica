@@ -51,6 +51,27 @@ body {
   margin-top: 10px;
 }
 
+.capturadasLab {
+    text-transform: uppercase;
+}
+
+.capturadasNum {
+    margin-top: 10px;
+}
+
+.historyPanel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+    font-size: 20px;
+    color: darkblue;
+}
+
+.historyLab {
+    text-transform: uppercase;
+}
+
 .board {
   margin: 20px;
   display: grid;

@@ -57,7 +57,9 @@ cambiarElemento(PosX, Lista, Color, Res) :-
   nth0(PosX, Lista, _, Aux),
   nth0(PosX, Res, Color, Aux).
 
-
+%!
+% Este predicado se encarga de buscar en una lista de listas, una lista que sea 
+% equivalente, utilizado para buscar posiciones X, Y.
 compare([[X|Xy]|T],[Z|Zy]):-
     equal([X|Xy],[Z|Zy]);compare(T,[Z|Zy]).
 

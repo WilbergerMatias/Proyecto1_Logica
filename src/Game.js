@@ -87,7 +87,6 @@ class Game extends React.Component {
             turns: this.state.turns + 1,
             waiting: false,
         });
-          //const principal = this.state.grid[this.state.PosX][this.state.PosY];
             const grid2 = JSON.stringify(this.state.grid).replaceAll('"', "");
             const query2 = "adyacentes(" + grid2 + "," + color + "," + this.state.PosX + "," + this.state.PosY + ", [], Rta)";
             this.pengine.query(query2, (success, response) => {
@@ -96,10 +95,16 @@ class Game extends React.Component {
                     this.setState({
                         capturadas: Aux.length,
                     });
+                    if (this.state.capturadas === Math.pow(this.state.grid.length))
+                        this.setState({
+                            complete: true
+                        });
+                    else {
+                        this.setState({
+                            waiting: false
+                        });
+                    }
                 }
-                this.setState({
-                    waiting: false,
-                });
             });
       } else {
         // Prolog query will fail when the clicked color coincides with that in the top left cell.
@@ -131,9 +136,10 @@ class Game extends React.Component {
           <div className="turnsPanel">
             <div className="turnsLab">Turns</div>
                     <div className="turnsNum">{this.state.turns}</div>
-                    <div className="capturad"> Capturadas: <br /> {this.state.capturadas}</div>
+                    <div className = "capturadasLab"> Capturadas</div>
+                        <div className="capturadasNum"> {this.state.capturadas}</div>
           </div>
-          <div className="history">
+                <div className="historyPanel">
            
           </div>
         </div>
