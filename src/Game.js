@@ -94,7 +94,6 @@ class Game extends React.Component {
             this.pengine.query(query2, (success, response) => {
                 if (success) {
                     const Aux = response['Rta'];
-                    this.state.movimiento.push(colorToCss(color))
                     this.setState({
                         capturadas: Aux.length,
                     });
@@ -108,9 +107,8 @@ class Game extends React.Component {
         this.setState({
           waiting: false
         });
-      }
-        //despues actualizar con el ultimo movimiento realizado.
-        //
+        }
+        this.state.movimiento.unshift(colorToCss(color)) // moviendo esta linea de lugar, se puede hacer que se actualice solamente si es valido el movimiento
     });
   }
 
@@ -142,7 +140,7 @@ class Game extends React.Component {
                         <button
                             className="colorBtn"
                             style={{ backgroundColor: colorToCss(color) }}
-                            key={color.uniqueId}
+                            //key={}
                         />)}
                 </div>
         </div>
