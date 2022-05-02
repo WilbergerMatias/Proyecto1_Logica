@@ -138,11 +138,11 @@ class Game extends React.Component {
           </div>
                 <div className="historyLab">movimientos</div>
                 <div className="historyTab">
-                    {this.state.movimiento.map(color =>
+                    {this.state.movimiento.map((color, mov) =>
                         <button
                             className="colorBtn"
                             style={{ backgroundColor: colorToCss(color) }}
-                            key={color.uniqueId}
+                            key={mov}
                         />)}
                 </div>
         </div>
