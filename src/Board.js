@@ -1,5 +1,6 @@
 import React from 'react';
 import Square from './Square';
+import Game from './Game'
 
 class Board extends React.Component {
     render() {
@@ -10,6 +11,7 @@ class Board extends React.Component {
                         <Square
                             value={cell}
                             key={i + "." + j}
+                            //onClick={() => Game.handleClickprincipal(i,j)}
                         />
                     )
                 )}

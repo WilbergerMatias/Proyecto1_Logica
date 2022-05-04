@@ -1,6 +1,7 @@
 import React from 'react';
 import PengineClient from './PengineClient';
 import Board from './Board';
+import PopUp from "./PopUp";
 
 /**
  * List of colors.
@@ -37,12 +38,19 @@ class Game extends React.Component {
         capturadas: 0,
       movimiento: [],
       complete: false,  // true if game is complete, false otherwise
-      waiting: false
+        waiting: false,
+      seen: false
     };
     this.handleClick = this.handleClick.bind(this);
     this.handlePengineCreate = this.handlePengineCreate.bind(this);
     this.pengine = new PengineClient(this.handlePengineCreate);
   }
+
+  togglePop = () => {
+        this.setState({
+            seen: !this.state.seen
+        });
+    };
 
   handlePengineCreate() {
     const queryS = 'init(Grid)';
@@ -132,23 +140,24 @@ class Game extends React.Component {
                 key={color}
               />)}
           </div>
-          <div className="turnsPanel">
-            <div className="turnsLab">Turns</div>
+          <div className="subPanel">
+            <div className="turnsLab">Turnos</div>
                     <div className="turnsNum">{this.state.turns}</div>
             <div className="capturadasLab">Capturadas</div>
                     <div className="capturadasNum"> {this.state.capturadas}</div>
-          </div>
-                <div className="historyLab">movimientos</div>
-                <div className="historyTab">
-                    {this.state.movimiento.map((color, mov) =>
+            <div className="historyLab">movimientos</div>
+                  <div className="historyTab">
+                        {this.state.movimiento.map((color, mov) =>
                         <button
                             className="colorBtn"
                             style={{ backgroundColor: colorToCss(color) }}
                             key={mov}
                         />)}
-                </div>
+                  </div>       
+          </div>  
         </div>
-        <Board grid={this.state.grid} />
+            <Board grid={this.state.grid} />
+            {this.state.complete ? <PopUp texto={"Victoria!!! Logro completar el juego en un total de: " + this.state.movimiento + " flicks realizados."} /> : null}
       </div>
     );
   }
