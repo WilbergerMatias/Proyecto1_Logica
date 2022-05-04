@@ -21,7 +21,7 @@ flick(Grid, Color, PosX, PosY, FGrid):-
     cambiarColorAdyacentes(Grid, ListadeAdyacentes, Color, FGrid));
     (cambiarElemento(PosX, Lista, Color, NuevaLista),
     cambiarElemento(PosY, Grid, NuevaLista, FGrid))).
-
+    
 %!
 % Caso base utilizado en el predicado de cambio de color
 
@@ -122,6 +122,7 @@ adyacentesC(Grid, Color, PosX, PosY, LARGO, ListaRes, ListaAdyacentes):-
 % se compara adyacencia.
 
 adyacentes(Grid, Color, PosX, PosY, ListaRes, ListaAdyacentes):-
+    ListaRes = [],
     encontrarLista(Grid,PosY,ListaY),
     length(ListaY,L),
     LARGO is L-1,
