@@ -35,6 +35,7 @@ class Game extends React.Component {
       PosX: 0,
       PosY: 0,
       grid: null,
+      iniciado : false,
         capturadas: 0,
       movimiento: [],
       complete: false,  // true if game is complete, false otherwise
@@ -88,7 +89,8 @@ class Game extends React.Component {
     const gridS = JSON.stringify(this.state.grid).replaceAll('"', "");
       const queryS = "flick(" + gridS + "," + color + "," + this.state.PosX +","+ this.state.PosY+", Grid)";
     this.setState({
-      waiting: true
+      waiting: true,
+      iniciado: true
     });
     this.pengine.query(queryS, (success, response) => {
         if (success) {
@@ -128,7 +130,8 @@ class Game extends React.Component {
   onOriginSelected(x, y) {
     this.setState({
       PosX : x,
-      PosY : y
+      PosY : y,
+      iniciado : true
     });
   }
 
@@ -166,7 +169,7 @@ class Game extends React.Component {
           </div>
             <Board 
               grid={this.state.grid} 
-              onOriginSelected = {!this.state.posX && !this.state.PosY ? this.onOriginSelected : undefined}
+              onOriginSelected = {!this.state.iniciado && !this.state.posX && !this.state.PosY ? this.onOriginSelected : undefined}
             />
             {this.state.complete ? <PopUp texto={"Victoria!!! Logro completar el juego en un total de: " + this.state.turns + " flicks realizados."} /> : null}
       </div>
