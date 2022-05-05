@@ -32,7 +32,7 @@ class Game extends React.Component {
     super(props);
     this.state = {
       turns: 0,
-      PosX:  0,
+      PosX: 0,
       PosY: 0,
       grid: null,
         capturadas: 0,
@@ -42,6 +42,7 @@ class Game extends React.Component {
       seen: false
     };
     this.handleClick = this.handleClick.bind(this);
+    this.onOriginSelected = this.onOriginSelected.bind(this);
     this.handlePengineCreate = this.handlePengineCreate.bind(this);
     this.pengine = new PengineClient(this.handlePengineCreate);
   }
@@ -124,6 +125,13 @@ class Game extends React.Component {
     });
   }
 
+  onOriginSelected(x, y) {
+    this.setState({
+      PosX : x,
+      PosY : y
+    });
+  }
+
   render() {
     if (this.state.grid === null) {
       return null;
@@ -155,7 +163,7 @@ class Game extends React.Component {
                         />)}
                   </div>       
           </div>  
-        </div>
+          </div>
             <Board grid={this.state.grid} />
             {this.state.complete ? <PopUp texto={"Victoria!!! Logro completar el juego en un total de: " + this.state.turns + " flicks realizados."} /> : null}
       </div>
