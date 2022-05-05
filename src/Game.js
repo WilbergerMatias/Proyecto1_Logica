@@ -2,10 +2,8 @@ import React from 'react';
 import PengineClient from './PengineClient';
 import Board from './Board';
 import PopUp from "./PopUp";
-<<<<<<< HEAD
 import swal from 'sweetalert';
-=======
->>>>>>> 02295a62bce62d544d0551737dbcc0f9435fac9a
+
 
 /**
  * List of colors.
@@ -50,10 +48,7 @@ class Game extends React.Component {
     this.onOriginSelected = this.onOriginSelected.bind(this);
     this.handlePengineCreate = this.handlePengineCreate.bind(this);
     this.pengine = new PengineClient(this.handlePengineCreate);
-<<<<<<< HEAD
       swal("Bienvenido a flick-color", "Al comienzo del juego, puede seleccionar cualqueira de los cuadrados de la grilla a la derecha, para empezar en ese cuadrado, este estara con un borde oscuro para resaltar. Por defecto este es el de el tope a la izquierda. Una vez que selecciona un lugar de partida, puede usar los 6 botones de la izquierda para cambiar el color del principal y de todos los del mismo color conectados.", "info");
-=======
->>>>>>> 02295a62bce62d544d0551737dbcc0f9435fac9a
   }
 
   togglePop = () => {
@@ -139,10 +134,7 @@ class Game extends React.Component {
     this.setState({
       PosX : x,
       PosY : y,
-<<<<<<< HEAD
-=======
       iniciado : true
->>>>>>> 02295a62bce62d544d0551737dbcc0f9435fac9a
     });
   }
 
