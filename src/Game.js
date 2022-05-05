@@ -164,7 +164,10 @@ class Game extends React.Component {
                   </div>       
           </div>  
           </div>
-            <Board grid={this.state.grid} />
+            <Board 
+              grid={this.state.grid} 
+              onOriginSelected = {!this.state.posX && !this.state.PosY ? this.onOriginSelected : undefined}
+            />
             {this.state.complete ? <PopUp texto={"Victoria!!! Logro completar el juego en un total de: " + this.state.turns + " flicks realizados."} /> : null}
       </div>
     );
