@@ -95,7 +95,10 @@ body {
     display: 100px;
     position: absolute;
     margin-top: 20px;
+    font-size: 40px;
     text-align: center;
     text-transform: uppercase;
+    color: red;
+    font-family: 'Franklin Gothic';
     margin-bottom: 3px;
 }

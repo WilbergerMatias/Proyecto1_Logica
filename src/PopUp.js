@@ -8,7 +8,7 @@ class Popup extends React.Component {
         return (
             <div className="modal">
                 <div className="modal_content">
-                    <p>aca va el texto de victoria</p>
+                    {this.props.texto}
                 </div>
             </div>
         );

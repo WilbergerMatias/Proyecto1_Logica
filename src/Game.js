@@ -157,7 +157,7 @@ class Game extends React.Component {
           </div>  
         </div>
             <Board grid={this.state.grid} />
-            {this.state.complete ? <PopUp texto={"Victoria!!! Logro completar el juego en un total de: " + this.state.movimiento + " flicks realizados."} /> : null}
+            {this.state.complete ? <PopUp texto={"Victoria!!! Logro completar el juego en un total de: " + this.state.turns + " flicks realizados."} /> : null}
       </div>
     );
   }
