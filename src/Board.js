@@ -11,7 +11,8 @@ class Board extends React.Component {
                         <Square
                             value={cell}
                             key={i + "." + j}
-                            //onClick={() => Game.handleClickprincipal(i,j)}
+                            onClick={this.props.onOriginSelected && (() =>
+                                this.props.onOriginSelected(j,i))}
                         />
                     )
                 )}
