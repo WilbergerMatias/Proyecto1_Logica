@@ -1,6 +1,6 @@
-# Tic tac toe en React + Prolog
+# Flick-Color en React + Prolog
 
-Implementación de un tic-tac-toe interactivo, usando React del lado del cliente, y Prolog del lado del servidor.
+Implementación de un flick-color interactivo, usando React del lado del cliente, y Prolog del lado del servidor.
 
 ## Para correr el proyecto
 
@@ -35,6 +35,12 @@ Implementación de un tic-tac-toe interactivo, usando React del lado del cliente
   en el directorio del proyecto (`tic-tac-toe`) para instalar las dependencias (librerías)
 localmente, en la carpeta `node_modules`.
 
+- Ejecutar
+
+    `npm install sweetalert --save`
+ 
+ (utilizado para mostrar un mensaje de inicio en el juego)
+ 
 - Ejecutar
 
     `npm start`
