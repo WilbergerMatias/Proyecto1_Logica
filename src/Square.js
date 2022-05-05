@@ -7,6 +7,7 @@ class Square extends React.Component {
             <div 
                 style={{ backgroundColor: colorToCss(this.props.value) }} 
                 onClick={this.props.onClick}
+                className={this.props.className}
             />
         );
     }

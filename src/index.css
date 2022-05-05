@@ -102,3 +102,7 @@ body {
     font-family: 'Franklin Gothic';
     margin-bottom: 3px;
 }
+
+.origin {
+  border : 2px solid black; 
+}

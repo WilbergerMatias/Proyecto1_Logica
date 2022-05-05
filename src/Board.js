@@ -13,6 +13,7 @@ class Board extends React.Component {
                             key={i + "." + j}
                             onClick={this.props.onOriginSelected && (() =>
                                 this.props.onOriginSelected(j,i))}
+                            className={this.props.origin[0] === i && this.props.origin[1] === j ? "origin" : undefined}
                         />
                     )
                 )}
