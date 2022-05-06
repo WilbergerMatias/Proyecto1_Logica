@@ -38,6 +38,8 @@ localmente, en la carpeta `node_modules`.
 - Ejecutar
 
     `npm install sweetalert --save`
+    o
+     `npm install sweetalert --save --force`
  
  (utilizado para mostrar un mensaje de inicio en el juego)
  
