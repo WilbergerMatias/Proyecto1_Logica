@@ -158,7 +158,7 @@ adyacentes(Grid, Color, PosX, PosY, ListaRes, ListaAdyacentes):-
       (not(ResAux3 = []), adyacentesC(Grid,Color, PosX,YAux2,LARGO,ResAux3,ResAux4));
       (not(ResAux2 = []), adyacentesC(Grid,Color, PosX,YAux2,LARGO,ResAux2,ResAux4));
       (not(ResAux1 = []), adyacentesC(Grid,Color, PosX,YAux2,LARGO,ResAux1,ResAux4));
-      (adyacentesC(Grid,Color, PosX,YAux1,LARGO,LRes,ResAux4))),
+      (adyacentesC(Grid,Color, PosX,YAux2,LARGO,LRes,ResAux4))),
     ((not(ResAux4 = []), append(ResAux4, [], ListaAdyacentes));
     (not(ResAux3 = []),  append(ResAux3, [], ListaAdyacentes));
     (not(ResAux2 = []), append(ResAux2, [], ListaAdyacentes));
