@@ -178,7 +178,7 @@ class Game extends React.Component {
             />
             {this.state.complete ? swal({
                 title: "Victoria",
-                text: "Logro terminar el juego con un total de " + this.state.turns + " flicks realizados!",
+                text: "Logro terminar el juego con un total de " + this.state.turns + " flicks realizados! Si desea seguir jugando haga click en el boton 'ok' y volvera a empezar el juego desde el comienzo.",
                 icon: "success",
                 buttons: true,
             }).then((value) => {
