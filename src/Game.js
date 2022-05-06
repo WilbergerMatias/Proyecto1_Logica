@@ -115,6 +115,7 @@ class Game extends React.Component {
                             complete: true
                         })
                 }
+                this.state.movimiento.unshift(colorToCss(color)); // moviendo esta linea de lugar, se puede hacer que se actualice solamente si es valido el movimiento
                 if (this.state.complete!==1)
                     this.setState({
                         waiting: false,
@@ -126,7 +127,7 @@ class Game extends React.Component {
           waiting: false
         });
         }
-        this.state.movimiento.unshift(colorToCss(color)) // moviendo esta linea de lugar, se puede hacer que se actualice solamente si es valido el movimiento
+        
     });
   }
 
@@ -175,7 +176,17 @@ class Game extends React.Component {
               onOriginSelected = {!this.state.iniciado && !this.state.posX && !this.state.PosY ? this.onOriginSelected : undefined}
               origin= {[this.state.PosX, this.state.PosY]}
             />
-            {this.state.complete ? <PopUp texto={"Victoria!!! Logro completar el juego en un total de: " + this.state.turns + " flicks realizados."} /> : null}
+            {this.state.complete ? swal({
+                title: "Victoria",
+                text: "Logro terminar el juego con un total de " + this.state.turns + " flicks realizados!",
+                icon: "success",
+                buttons: true,
+            }).then((value) => {
+                if (value) {
+                    window.location.reload();
+                    return false;
+                }
+            }) : null}
       </div>
     );
   }
