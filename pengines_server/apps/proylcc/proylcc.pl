@@ -137,9 +137,13 @@ adyacentesC(Grid, Color, PosX, PosY, LARGO, ListaRes, ListaAdyacentes):-
 % Una celda adyacente es aquella que es vecina (se encuentra a 1
 % posicion en X o Y), y contiene el mismo color que la Celda de la cual
 % se compara adyacencia.
+% Se inicializan las variables YAux1 e YAux2 con 0. Esto lo hacemos para
+% evitar un warning.
 
 adyacentes(Grid, Color, PosX, PosY, ListaRes, ListaAdyacentes):-
     ListaRes = [],
+    YAux1 = 0,
+    YAux2 = 0,
     encontrarLista(Grid,PosY,ListaY),
     length(ListaY,L),
     LARGO is L-1,
