@@ -48,7 +48,7 @@ class Game extends React.Component {
     this.onOriginSelected = this.onOriginSelected.bind(this);
     this.handlePengineCreate = this.handlePengineCreate.bind(this);
     this.pengine = new PengineClient(this.handlePengineCreate);
-      swal("Bienvenido a flick-color", "Al comienzo del juego, puede seleccionar cualqueira de los cuadrados de la grilla a la derecha, para empezar en ese cuadrado, este estara con un borde oscuro para resaltar. Por defecto este es el de el tope a la izquierda. Una vez que selecciona un lugar de partida, puede usar los 6 botones de la izquierda para cambiar el color del principal y de todos los del mismo color conectados.", "info");
+      swal("Bienvenido a flick-color", "Al comienzo del juego, puede seleccionar cualquiera de los cuadrados de la grilla a la derecha, para empezar en ese cuadrado, este estará con un borde oscuro para resaltar. Por defecto este es el de el tope a la izquierda. Una vez que selecciona un lugar de partida, puede usar los 6 botones de la izquierda para cambiar el color del principal y de todos los del mismo color conectados.", "info");
   }
 
   togglePop = () => {
@@ -176,18 +176,20 @@ class Game extends React.Component {
               onOriginSelected = {!this.state.iniciado && !this.state.posX && !this.state.PosY ? this.onOriginSelected : undefined}
               origin= {[this.state.PosX, this.state.PosY]}
             />
+            
             {this.state.complete ? swal({
                 title: "Victoria",
                 text: "Logro terminar el juego con un total de " + this.state.turns + " flicks realizados! Si desea seguir jugando haga click en el boton 'ok' y volvera a empezar el juego desde el comienzo.",
                 icon: "success",
-                buttons: true,
+                button: true,
             }).then((value) => {
-                if (value) {
-                    window.location.reload();
-                    return false;
-                }
+                  window.location.reload();
+                  return false;
             }) : null}
+            
       </div>
+
+      
     );
   }
 }
